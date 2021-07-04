@@ -43,10 +43,19 @@ for(i = 0; i < numberOfButtons; i++){
   //this.setAttribute("style", "color : white;");
   var buttonsInnerHTML = this.innerHTML;
   soundMatchPlay(buttonsInnerHTML);
+  buttonAnimation(buttonsInnerHTML);
   });
 }
 
 document.addEventListener("keydown", function(event){
   var buttonPressed = event.key;
   soundMatchPlay(buttonPressed);
+  buttonAnimation(buttonPressed);
 });
+
+
+function buttonAnimation(currentButton){
+  var activeButton = document.querySelector("." + currentButton);
+  activeButton.classList.toggle("pressed");
+  setTimeout(() =>activeButton.classList.toggle("pressed"), 300);
+}
