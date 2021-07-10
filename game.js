@@ -52,21 +52,20 @@ function animatePress(currerntColor){
 }
 
 function checkAnswer(currentLevel){
-  for(i=0 ; i <= currentLevel; i++){
-    if(gamePattern[i] === userClickedPattern[i]){
+    if(gamePattern[currentLevel] === userClickedPattern[currentLevel]){
       console.log("success");
-      if(userClickedPattern.slice(0,i).length === gamePattern.length){
-        setTimeout(function(){
-          nextSequence();
-        }, 1000);
+    if(userClickedPattern.length === gamePattern.length){
+      setTimeout( function () {
+        nextSequence();
+      }, 1000);
 
-      }
+    }
+
     } else{
-      console.log("wrong");
-      return 0;
+    console.log("wrong");
     }
   }
-}
+
 
 function usersTurn() {
   $(".btn").click( function( ) {
