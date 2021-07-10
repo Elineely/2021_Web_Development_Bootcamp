@@ -1,14 +1,13 @@
 //variables
 
 var gamePattern = [ ];
+var userClickedPattern = [ ];
 
 var level = 0;
-
 var started = false;
 
 var buttonColors = ["red", "blue", "green", "yellow"];
 
-var userClickedPattern = [ ];
 
 //functions
 function nextSequence(){
@@ -24,8 +23,6 @@ function nextSequence(){
   playAudio1(randomChosenColor);
   $("#" + randomChosenColor).fadeOut(150).fadeIn(150).fadeOut(150).fadeIn(150);
 
-
-  // return gamePattern, level;
 }
 
 function playAudio1(color){
@@ -77,7 +74,8 @@ function usersTurn() {
   playAudio1(chosenByUser);
   animatePress(chosenByUser);
   userClickedPattern.push(chosenByUser);
-  return userClickedPattern;
+
+  checkAnswer(userClickedPattern.length-1);
   });
 }
 
@@ -86,33 +84,26 @@ function usersTurn() {
 $(document).keypress( function(){
   if(!started){
     $("#level-title").text("Level. " + level);
-    setTimeout(() =>nextSequence(), 700);
+    nextSequence();
     started = true;
   }
 });
 
-if(userClickedPattern[0]){
-  if(level = 0){
-    nextSequence();
-    usersTurn();
-    checkAnswer(0)
-}
-}
-
 usersTurn();
-
-switch(checkAnswer(level)){
-case 1 :
-  while(level!=0 && checkAnswer(level)){
-    nextSequence();
-    usersTurn();
-    checkAnswer(level);
-  }
-  break;
-default :
-  level = 0;
-  gamePattern = [];
-  userClickedPattern = [];
-  started = false;
-  $("#level-title").text("Press A Key to Restart");
-}
+// checkAnswer(level);
+//
+// switch(checkAnswer(level)){
+// case 1 :
+//   while(level!=0 && checkAnswer(level)){
+//     nextSequence();
+//     usersTurn();
+//     checkAnswer(level);
+//   }
+//   break;
+// default :
+//   level = 0;
+//   gamePattern = [];
+//   userClickedPattern = [];
+//   started = false;
+//   $("#level-title").text("Press A Key to Restart");
+// }
